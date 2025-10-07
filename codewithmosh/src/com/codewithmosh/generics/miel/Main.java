@@ -1,5 +1,9 @@
 package com.codewithmosh.generics.miel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -22,6 +26,29 @@ public class Main {
 
         String age = (miel.compareTo(kim) == 0) ? "same" : "different";
         System.out.println(miel.getName() + " and kim " + kim.getName() + " have " + age + " age");
+
+
+        var intList = List.of(1, 2, 3, 4, 5);
+        System.out.println("Average is: " + getAverage(intList));
+
+        var doubleList = List.of(1.0, 2.0, 3.0, 4.0, 5.0);
+        System.out.println("Average is: " + getAverage(doubleList));
+
+
+        List<Integer> intList2 = new ArrayList<>(intList);
+        appendToList(intList2);
+        System.out.println(intList2);
+
+        List<Number> numberList2 = new ArrayList<>(doubleList);
+        appendToList(numberList2);
+        System.out.println(numberList2);
+
+
+//        List<Double> doubleList2 = new ArrayList<>(doubleList);
+//        appendToList(doubleList2);
+//        System.out.println(doubleList2);
+
+
     }
 
 
@@ -46,6 +73,18 @@ public class Main {
     }
 
 
+    public static double getAverage(List <? extends Number> listOfNumbers) {
+        double sum = 0;
+        for (Number number : listOfNumbers) {
+            sum += number.doubleValue();
+        }
+        return sum / listOfNumbers.size();
+    }
+
+
+    public static void appendToList(List<? super Integer> intList) {
+        intList.add(6);
+    }
 
 
 }
